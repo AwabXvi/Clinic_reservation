@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "278194407210",
+    "firebase_url": "https://clinical-342f4.firebaseio.com",
+    "project_id": "clinical-342f4",
+    "storage_bucket": "clinical-342f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278194407210:android:e040b62a8e9929be",
+        "android_client_info": {
+          "package_name": "com.bahri.crimnal.clinical"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278194407210-3ucamen9fos1vkhvqhhto4se1s2joq3b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bahri.crimnal.clinical",
+            "certificate_hash": "3726e53873f9e0cc6b370c7c4357a0092b8046f0"
+          }
+        },
+        {
+          "client_id": "278194407210-p8nntidc1odk83pe7qk04ke111uo1ps1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDILofPRaCZdEPAnCwH42P3x7QOO2dUfzE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278194407210-p8nntidc1odk83pe7qk04ke111uo1ps1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
