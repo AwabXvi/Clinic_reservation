@@ -160,6 +160,7 @@ public class Reservation extends AppCompatActivity {
                                                                                 reservation.put("photo_url", user.getPhotoUrl().toString());
                                                                                 reservation.put("doctor", doctor_price);
                                                                                 reservation.put("price", price_String);
+                                                                                reservation.put("acceptence", false);
                                                                                 ref3.document().set(reservation).addOnSuccessListener(
                                                                                         new OnSuccessListener<Void>() {
                                                                                             @Override
