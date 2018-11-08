@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
             new LatLng(-40, -168), new LatLng(71, 136));
     private ImageView search;
+    private Button reserve;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private ImageView mGps;
     private AutoCompleteTextView mSearchText;
@@ -92,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         clinic.setName(String.valueOf(documentSnapshots.get("name")));
                         LatLng latLng = new LatLng(clinic.getLatitude(), clinic.getLongitude());
                         String title = (String) documentSnapshots.get("name");
-                        Toast.makeText(MainActivity.this, "Title :" + title, Toast.LENGTH_LONG).show();
                         String Snippt = (String) documentSnapshots.get("info");
                         makeMarker(latLng, title, Snippt);
 
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         mGps = (ImageView) findViewById(R.id.gps);
+        reserve = (Button) findViewById(R.id.reserve_btn);
         mGoogleApiClient = new GoogleApiClient
                 .Builder(this)
                 .addApi(Places.GEO_DATA_API)
@@ -113,6 +115,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         search = (ImageView) findViewById(R.id.ic_magnify);
         mSearchText = (AutoCompleteTextView) findViewById(R.id.input_search);
+
+        reserve.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(MainActivity.this, Reservation.class);
+                        startActivity(i);
+                    }
+                }
+        );
 
         if (isServices_ok()) {
             getLocation_permissions();
@@ -210,10 +222,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     public void onComplete(@NonNull Task task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "onComplete: found location!");
-                            Location currentLocation = (Location) task.getResult();
 
-                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
-                                    DEFAULT_ZOOM, "My location");
+                            Location currentLocation = (Location) task.getResult();
+                            if (currentLocation != null) {
+                                LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                                if (latLng != null) {
+                                    moveCamera(latLng, DEFAULT_ZOOM, "My location");
+                                }
+                            }
 
                         } else {
                             Log.d(TAG, "onComplete: current location is null");
