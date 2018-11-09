@@ -37,6 +37,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -82,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = new Intent(MainActivity.this, IntentService.class);
+        startService(intent);
         db = FirebaseFirestore.getInstance();
         CollectionReference ref = db.collection("Clinics");
         ref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -126,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
         );
 
+
         if (isServices_ok()) {
             getLocation_permissions();
         }
@@ -135,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Toast.makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
+
         Log.d(TAG, "onMapReady: map is ready");
         mMap = googleMap;
 
@@ -316,6 +320,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onStart() {
         super.onStart();
+        Intent intent = new Intent(MainActivity.this, IntentService.class);
+        startService(intent);
         user = mAuth.getCurrentUser();
         if (user == null) {
             Intent i = new Intent(MainActivity.this, StartActivity.class);

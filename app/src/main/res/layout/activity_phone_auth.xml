@@ -6,14 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".PhoneAuth">
 
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="140dp"
+        android:layout_height="132dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="99dp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/PhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="28dp"
-        android:layout_marginTop="248dp"
+        android:layout_alignTop="@+id/spinner"
+        android:layout_marginEnd="17dp"
         android:ems="10"
         android:hint="Enter your phone number"
         android:inputType="number"
@@ -25,13 +38,15 @@
 
     <Button
         android:id="@+id/Verify"
-        android:layout_width="wrap_content"
+        android:layout_width="209dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="79dp"
+        android:layout_marginBottom="110dp"
+        android:background="#5ec45e"
         android:longClickable="false"
         android:text="Send Verification code"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,8 +56,8 @@
         android:id="@+id/spinner"
         android:layout_width="120dp"
         android:layout_height="43dp"
-        android:layout_alignTop="@+id/PhoneNumber"
-        android:layout_marginEnd="-35dp"
-        android:layout_toStartOf="@+id/Verify" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="198dp" />
 
 </RelativeLayout>

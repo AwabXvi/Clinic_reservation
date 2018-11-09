@@ -24,10 +24,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Profile extends AppCompatActivity {
 
     private EditText name;
-    private ImageView Profile_img;
+    private CircleImageView Profile_img;
     private ImageButton button;
     private Button Contunie;
     private FirebaseAuth mAuth;
@@ -44,7 +46,7 @@ public class Profile extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        Profile_img = findViewById(R.id.Profile_img);
+        Profile_img = (CircleImageView) findViewById(R.id.Profile_img);
         name = (EditText) findViewById(R.id.Name);
         Phone = (EditText) findViewById(R.id.phone);
         Contunie = (Button) findViewById(R.id.continue_btn);

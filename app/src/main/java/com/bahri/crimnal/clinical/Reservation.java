@@ -89,11 +89,13 @@ public class Reservation extends AppCompatActivity {
         price = (TextView) findViewById(R.id.price_txt);
         start_time = (TextView) findViewById(R.id.start_txt);
         end_time = (TextView) findViewById(R.id.end_txt);
+
+
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         final NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.ic_stat_logo)
                 .setContentTitle("Reservation completed")
                 .setContentText("Your appointment has been successfully made")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -101,6 +103,8 @@ public class Reservation extends AppCompatActivity {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
         final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+
         ref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

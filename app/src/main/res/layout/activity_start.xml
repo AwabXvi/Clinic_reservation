@@ -9,33 +9,74 @@
     tools:layout_editor_absoluteX="16dp"
     tools:layout_editor_absoluteY="25dp">
 
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="140dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="43dp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/phonAuth"
         android:layout_width="203dp"
-        android:layout_height="0dp"
+        android:layout_height="54dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="82dp"
+        android:layout_marginBottom="46dp"
         android:onClick="phoneAuth"
         android:text="Phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/google_button" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/google_button"
         android:layout_width="198dp"
-        android:layout_height="0dp"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="14dp"
-        android:layout_marginTop="366dp"
+        android:layout_marginBottom="21dp"
         android:text="SIGN IN WITH GOOGLE"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/phonAuth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="155dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="43dp"
+        android:gravity="center"
+        android:text="Welcome.."
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="242dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="75dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="Please Sign in to continue :"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/google_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </android.support.constraint.ConstraintLayout>

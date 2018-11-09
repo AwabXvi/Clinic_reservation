@@ -6,13 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".Verification">
 
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="140dp"
+        android:layout_height="132dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="99dp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="241dp"
+        android:layout_marginBottom="226dp"
         android:ems="10"
         android:hint="Enter code"
         android:inputType="number" />
@@ -23,6 +37,8 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="197dp"
-        android:text="Continue" />
+        android:layout_marginBottom="128dp"
+        android:background="#5ec45e"
+        android:text="Continue"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
 </RelativeLayout>
