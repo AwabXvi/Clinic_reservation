@@ -66,7 +66,7 @@
     <Button
         android:id="@+id/reserve_btn"
         style="@style/Base.CardView"
-        android:layout_width="190dp"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -74,7 +74,7 @@
         android:background="#5ec45e"
         android:text="Get an Appointment"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
 
 </RelativeLayout>
