@@ -225,7 +225,7 @@ public class Reservation extends AppCompatActivity {
                 new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        Toast.makeText(Reservation.this, "Success " + doctor_price, Toast.LENGTH_LONG).show();
+
                         price_String = (String) documentSnapshot.get(doctor_price);
 
                         price.setText(price_String);
