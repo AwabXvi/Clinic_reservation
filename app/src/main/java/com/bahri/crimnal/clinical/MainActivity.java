@@ -83,57 +83,60 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent(MainActivity.this, IntentService.class);
-        startService(intent);
-        db = FirebaseFirestore.getInstance();
-        CollectionReference ref = db.collection("Clinics");
-        ref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot documentSnapshots : queryDocumentSnapshots) {
-
-                    Clinic clinic = documentSnapshots.toObject(Clinic.class);
-                    if (clinic.getLatitude() != 0.0 && clinic.getLongitude() != 0.0) {
-                        clinic.setName(String.valueOf(documentSnapshots.get("name")));
-                        LatLng latLng = new LatLng(clinic.getLatitude(), clinic.getLongitude());
-                        String title = (String) documentSnapshots.get("name");
-                        String Snippt = (String) documentSnapshots.get("info");
-                        makeMarker(latLng, title, Snippt);
-
-
-                    }
-                }
-            }
-        });
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        mGps = (ImageView) findViewById(R.id.gps);
-        reserve = (Button) findViewById(R.id.reserve_btn);
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(this)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .enableAutoManage(this, this)
-                .build();
+        if (user != null) {
+            Intent intent = new Intent(MainActivity.this, IntentService.class);
+            startService(intent);
+            db = FirebaseFirestore.getInstance();
+            CollectionReference ref = db.collection("Clinics");
+            ref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot documentSnapshots : queryDocumentSnapshots) {
 
-        search = (ImageView) findViewById(R.id.ic_magnify);
-        mSearchText = (AutoCompleteTextView) findViewById(R.id.input_search);
+                        Clinic clinic = documentSnapshots.toObject(Clinic.class);
+                        if (clinic.getLatitude() != 0.0 && clinic.getLongitude() != 0.0) {
+                            clinic.setName(String.valueOf(documentSnapshots.get("name")));
+                            LatLng latLng = new LatLng(clinic.getLatitude(), clinic.getLongitude());
+                            String title = (String) documentSnapshots.get("name");
+                            String Snippt = (String) documentSnapshots.get("info");
+                            makeMarker(latLng, title, Snippt);
 
-        reserve.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(MainActivity.this, Reservation.class);
-                        startActivity(i);
+
+                        }
                     }
                 }
-        );
+            });
+
+            mGps = (ImageView) findViewById(R.id.gps);
+            reserve = (Button) findViewById(R.id.reserve_btn);
+            mGoogleApiClient = new GoogleApiClient
+                    .Builder(this)
+                    .addApi(Places.GEO_DATA_API)
+                    .addApi(Places.PLACE_DETECTION_API)
+                    .enableAutoManage(this, this)
+                    .build();
+
+            search = (ImageView) findViewById(R.id.ic_magnify);
+            mSearchText = (AutoCompleteTextView) findViewById(R.id.input_search);
+
+            reserve.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent i = new Intent(MainActivity.this, Reservation.class);
+                            startActivity(i);
+                        }
+                    }
+            );
 
 
-        if (isServices_ok()) {
+            if (isServices_ok()) {
+                getLocation_permissions();
+            }
             getLocation_permissions();
         }
-        getLocation_permissions();
     }
 
     @SuppressLint("MissingPermission")
