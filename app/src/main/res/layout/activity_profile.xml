@@ -24,9 +24,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="74dp"
-        tools:layout_editor_absoluteX="104dp"
-        app:civ_border_width="2dp"
         app:civ_border_color="#ffffff"
+        app:civ_border_width="2dp"
+        tools:layout_editor_absoluteX="104dp"
         tools:layout_editor_absoluteY="51dp" />
 
 

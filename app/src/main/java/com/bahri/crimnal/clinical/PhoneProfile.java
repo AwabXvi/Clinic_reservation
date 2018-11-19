@@ -40,7 +40,7 @@ public class PhoneProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_phone_profile);
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -52,7 +52,7 @@ public class PhoneProfile extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Name = name.getText().toString().trim();
-                        if (Name.isEmpty() || number.length() < 11) {
+                        if (Name.isEmpty()) {
                             name.setError("Enter a valid name.");
                             name.requestFocus();
                             return;
