@@ -29,6 +29,7 @@ public class IntentService extends android.app.IntentService {
     private FirebaseUser user;
     private static final String TAG = "IntentService";
     private CollectionReference ref;
+    private String username;
 
     public IntentService() {
         super("IntentService");
@@ -53,7 +54,10 @@ public class IntentService extends android.app.IntentService {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
         final NotificationManagerCompat manger = NotificationManagerCompat.from(this);
-        ref.whereEqualTo("name", user.getDisplayName()).addSnapshotListener(
+        if (user != null && user.getDisplayName() != null) {
+            username = user.getDisplayName();
+        }
+        ref.whereEqualTo("name", username).addSnapshotListener(
                 new EventListener<QuerySnapshot>() {
 
                     @Override
