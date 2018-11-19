@@ -51,7 +51,7 @@ public class PhoneAuth extends AppCompatActivity {
                         String PhoneNumber = phoneNumber.getText().toString().trim();
 
                         if (PhoneNumber.isEmpty() || PhoneNumber.length() < 9) {
-                            phoneNumber.setError("Enter a valid mobile");
+                            phoneNumber.setError("Enter a valid phone number");
                             phoneNumber.requestFocus();
                             return;
                         }

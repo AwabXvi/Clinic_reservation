@@ -52,8 +52,11 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".Reservation"></activity>
+        <activity android:name=".Reservation" />
+
         <service android:name=".IntentService" />
+
+        <activity android:name=".PhoneProfile"></activity>
     </application>
 
 </manifest>
