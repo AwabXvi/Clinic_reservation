@@ -24,9 +24,10 @@
         android:id="@+id/PhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/spinner"
-        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="335dp"
+        android:layout_marginEnd="40dp"
         android:ems="10"
         android:hint="Enter your phone number"
         android:inputType="number"
@@ -42,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="110dp"
+        android:layout_marginBottom="36dp"
         android:background="#5ec45e"
         android:longClickable="false"
         android:text="Send Verification code"
@@ -56,8 +57,7 @@
         android:id="@+id/spinner"
         android:layout_width="120dp"
         android:layout_height="43dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="198dp" />
+        android:layout_alignTop="@+id/PhoneNumber"
+        android:layout_toStartOf="@+id/circleImageView" />
 
 </RelativeLayout>

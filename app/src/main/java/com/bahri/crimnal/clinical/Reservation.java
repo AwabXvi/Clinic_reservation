@@ -128,7 +128,6 @@ public class Reservation extends AppCompatActivity {
                                         new OnSuccessListener<DocumentSnapshot>() {
                                             @Override
                                             public void onSuccess(DocumentSnapshot documentSnapshot) {
-
                                                 doctors_array = (ArrayList<String>) documentSnapshot.get("doctors");
                                                 start = (String) documentSnapshot.get("start_time");
                                                 end = (String) documentSnapshot.get("end_time");
@@ -141,7 +140,6 @@ public class Reservation extends AppCompatActivity {
                                                             @Override
                                                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                                                                 doctor_price = adapterView.getItemAtPosition(i).toString();
-
                                                                 getprice(doctor_price, name);
                                                                 db.collection("Users").document(user.getUid()).get()
                                                                         .addOnSuccessListener(
@@ -219,9 +217,9 @@ public class Reservation extends AppCompatActivity {
 
     }
 
-    private void getprice(final String doctor_price, String name) {
+    private void getprice(final String doctor_price, final String name) {
 
-        ref2.document(name).get().addOnSuccessListener(
+        db.collection("Prices").document(name).get().addOnSuccessListener(
                 new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -235,7 +233,7 @@ public class Reservation extends AppCompatActivity {
                 new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Reservation.this, "Failed " + price_String, Toast.LENGTH_LONG).show();
+                        Toast.makeText(Reservation.this, "Failed " + e.toString(), Toast.LENGTH_LONG).show();
                     }
                 }
         );

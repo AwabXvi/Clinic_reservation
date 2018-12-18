@@ -115,6 +115,7 @@ public class Profile extends AppCompatActivity {
                 Log.d(TAG, "DocumentSnapshot successfully written!");
                 Intent i = new Intent(Profile.this, MainActivity.class);
                 startActivity(i);
+                finish();
                 return;
             }
         }).addOnFailureListener(new OnFailureListener() {

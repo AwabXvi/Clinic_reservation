@@ -33,7 +33,7 @@ public class PhoneProfile extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private FirebaseUser user;
-    private String Name, number, Phoro_URl;
+    private String Name;
 
     private String TAG = "com.bahri.crimnal.clinical";
 
@@ -87,6 +87,7 @@ public class PhoneProfile extends AppCompatActivity {
                 Log.d(TAG, "DocumentSnapshot successfully written!");
                 Intent i = new Intent(PhoneProfile.this, MainActivity.class);
                 startActivity(i);
+                finish();
                 return;
             }
         }).addOnFailureListener(new OnFailureListener() {

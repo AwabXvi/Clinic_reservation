@@ -85,29 +85,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+
+        if (isServices_ok()) {
+            getLocation_permissions();
+        }
+        initMap();
         if (user != null) {
-            Intent intent = new Intent(MainActivity.this, IntentService.class);
-            startService(intent);
-            db = FirebaseFirestore.getInstance();
-            CollectionReference ref = db.collection("Clinics");
-            ref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    for (QueryDocumentSnapshot documentSnapshots : queryDocumentSnapshots) {
 
-                        Clinic clinic = documentSnapshots.toObject(Clinic.class);
-                        if (clinic.getLatitude() != 0.0 && clinic.getLongitude() != 0.0) {
-                            clinic.setName(String.valueOf(documentSnapshots.get("name")));
-                            LatLng latLng = new LatLng(clinic.getLatitude(), clinic.getLongitude());
-                            String title = (String) documentSnapshots.get("name");
-                            String Snippt = (String) documentSnapshots.get("info");
-                            makeMarker(latLng, title, Snippt);
-
-
-                        }
-                    }
-                }
-            });
 
             mGps = (ImageView) findViewById(R.id.gps);
             reserve = (Button) findViewById(R.id.reserve_btn);
@@ -132,10 +116,41 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             );
 
 
-            if (isServices_ok()) {
-                getLocation_permissions();
-            }
-            getLocation_permissions();
+
+
+            Intent intent = new Intent(MainActivity.this, IntentService.class);
+            startService(intent);
+            db = FirebaseFirestore.getInstance();
+            CollectionReference ref = db.collection("Clinics");
+            ref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot documentSnapshots : queryDocumentSnapshots) {
+
+                        Clinic clinic = documentSnapshots.toObject(Clinic.class);
+                        if (clinic.getLatitude() != 0.0 && clinic.getLongitude() != 0.0) {
+                            clinic.setName(String.valueOf(documentSnapshots.get("name")));
+                            LatLng latLng = new LatLng(clinic.getLatitude(), clinic.getLongitude());
+                            String title = (String) documentSnapshots.get("name");
+                            String Snippt = (String) documentSnapshots.get("info");
+                            if (title != null && title != null) {
+
+                                makeMarker(latLng, title, Snippt);
+
+                            }
+
+
+                        }
+                    }
+                }
+            }).addOnFailureListener(
+                    new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MainActivity.this, "Failed: " + e.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+            );
         }
     }
 

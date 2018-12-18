@@ -24,9 +24,9 @@
         android:id="@+id/code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="226dp"
+        android:layout_marginTop="330dp"
         android:ems="10"
         android:hint="Enter code"
         android:inputType="number" />
@@ -36,8 +36,9 @@
         android:layout_width="149dp"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="128dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="33dp"
+        android:layout_marginStart="119dp"
         android:background="#5ec45e"
         android:text="Continue"
         android:textColor="@color/common_google_signin_btn_text_dark_default" />
