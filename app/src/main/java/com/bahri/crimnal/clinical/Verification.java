@@ -1,6 +1,7 @@
 package com.bahri.crimnal.clinical;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -31,18 +32,22 @@ public class Verification extends AppCompatActivity {
     private String VeridicationId;
     private Button Continue;
     private EditText Codefield;
-
+    ProgressDialog progressDoalog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification);
         Continue = (Button) findViewById(R.id.Signin);
         Codefield = (EditText) findViewById(R.id.code);
+        progressDoalog = new ProgressDialog(Verification.this);
+        progressDoalog.setIndeterminate(true);
+        progressDoalog.setMessage("loading..");
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mAuth = FirebaseAuth.getInstance();
         String PhoneNumber = getIntent().getStringExtra("phonenumber");
         sendVerificationCode(PhoneNumber);
         Continue.setOnClickListener(
-                new View.OnClickListener() {
+                    new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         String code = Codefield.getText().toString().trim();
@@ -51,7 +56,7 @@ public class Verification extends AppCompatActivity {
                             Codefield.requestFocus();
                             return;
                         }
-
+                        progressDoalog.show();
                         //verifying the code entered manually
                         verifyCode(code);
                     }
@@ -79,12 +84,14 @@ public class Verification extends AppCompatActivity {
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            progressDoalog.dismiss();
             super.onCodeSent(s, forceResendingToken);
             VeridicationId = s;
         }
 
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+            progressDoalog.dismiss();
             String code = phoneAuthCredential.getSmsCode();
             if (code != null) {
                 Codefield.setText(code);
@@ -95,6 +102,7 @@ public class Verification extends AppCompatActivity {
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
+            progressDoalog.dismiss();
             Toast.makeText(Verification.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     };
@@ -104,6 +112,7 @@ public class Verification extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    FirebaseUser user = task.getResult().getUser();
                     finish();
                     Intent intent = new Intent(Verification.this, PhoneProfile.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

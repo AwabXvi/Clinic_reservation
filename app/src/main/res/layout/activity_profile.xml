@@ -14,7 +14,7 @@
         android:layout_height="237dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@color/colorPrimary" />
+        android:background="#303F9F" />
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -43,25 +43,16 @@
         android:id="@+id/Name"
         android:layout_width="178dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="263dp"
+        android:layout_marginStart="111dp"
+        android:layout_marginTop="264dp"
         android:editable="false"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Awab Mohammed"
         android:theme="@style/Base.AlertDialog.AppCompat.Light" />
-
-    <TextView
-        android:id="@+id/NameTag"
-        android:layout_width="61dp"
-        android:layout_height="41dp"
-        android:layout_alignStart="@+id/continue_btn"
-        android:layout_alignTop="@+id/Name"
-        android:gravity="center"
-        android:text="Name :"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="16sp" />
 
     <Button
         android:id="@+id/continue_btn"
@@ -71,7 +62,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="11dp"
-        android:background="#5ec45e"
+        android:background="@drawable/corners"
         android:text="Continue"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="24sp" />
@@ -80,32 +71,25 @@
         android:id="@+id/phone"
         android:layout_width="173dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/Phone_field"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/Name"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="111dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="+24911857471"
+        android:hint="Phone Number"
         android:inputType="phone"
         android:theme="@style/Base.AlertDialog.AppCompat.Light" />
-
-    <TextView
-        android:id="@+id/Phone_field"
-        android:layout_width="62dp"
-        android:layout_height="41dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/NameTag"
-        android:layout_marginTop="326dp"
-        android:gravity="center"
-        android:text="Phone:"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/Warring_number"
         android:layout_width="284dp"
         android:layout_height="40dp"
-        android:layout_alignEnd="@+id/Edit_btn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="131dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="115dp"
         android:gravity="center"
         android:text="Please Enter your Current Phone Number"
         android:textColor="@android:color/holo_red_dark" />

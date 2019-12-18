@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PhoneAuth">
@@ -9,55 +10,85 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
-        android:layout_width="140dp"
-        android:layout_height="132dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="130dp"
+        android:layout_width="416dp"
+        android:layout_height="182dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/logo"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <EditText
         android:id="@+id/PhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="335dp"
-        android:layout_marginEnd="40dp"
+        android:layout_width="250dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="205dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="316dp"
+        android:background="@android:drawable/editbox_background"
         android:ems="10"
         android:hint="Enter your phone number"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/Verify"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.576"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout"
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
 
     <Button
         android:id="@+id/Verify"
-        android:layout_width="209dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="36dp"
-        android:background="#5ec45e"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/corners"
         android:longClickable="false"
         android:text="Send Verification code"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RelativeLayout
+
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="205dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="315dp"
+        android:background="@drawable/spinner_border"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/Verify"
+        app:layout_constraintEnd_toStartOf="@+id/PhoneNumber"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PhoneNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView">
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="120dp"
-        android:layout_height="43dp"
-        android:layout_alignTop="@+id/PhoneNumber"
-        android:layout_toStartOf="@+id/circleImageView" />
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="5dp"
+            android:background="#3CFFFFFF"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:spinnerMode="dropdown"
+            android:textAlignment="gravity" />
 
-</RelativeLayout>
+        <ImageView
+            android:layout_width="43dp"
+            android:layout_height="54dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="2dp"
+            android:src="@drawable/spibber" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

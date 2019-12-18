@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             getLocation_permissions();
         }
         initMap();
-        if (user != null) {
+
 
 
             mGps = (ImageView) findViewById(R.id.gps);
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     .Builder(this)
                     .addApi(Places.GEO_DATA_API)
                     .addApi(Places.PLACE_DETECTION_API)
-                    .enableAutoManage(this, this)
+                    .enableAutoManage(MainActivity.this, this)
                     .build();
 
             search = (ImageView) findViewById(R.id.ic_magnify);
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
             );
         }
-    }
+
 
     @SuppressLint("MissingPermission")
     @Override
@@ -182,8 +182,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mPlaceAutocompleteAdapter = new PlaceAutocompleteAdapter(this, mGoogleApiClient,
                 LAT_LNG_BOUNDS, null);
-
         mSearchText.setAdapter(mPlaceAutocompleteAdapter);
+
+
+
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override

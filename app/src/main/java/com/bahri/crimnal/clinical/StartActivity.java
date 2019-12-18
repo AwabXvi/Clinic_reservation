@@ -1,5 +1,6 @@
 package com.bahri.crimnal.clinical;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +37,7 @@ public class StartActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private SignInButton signInButton;
     private String TAG = "com.bahri.crimnal.clinical";
-
+    ProgressDialog progressDoalog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,10 @@ public class StartActivity extends AppCompatActivity {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+        progressDoalog = new ProgressDialog(StartActivity.this);
+        progressDoalog.setIndeterminate(true);
+        progressDoalog.setMessage("loading..");
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mGoogleSignInClient = GoogleSignIn.getClient(StartActivity.this, gso);
         signInButton = findViewById(R.id.google_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
@@ -57,6 +62,7 @@ public class StartActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         signIn();
+                        progressDoalog.show();
                     }
                 }
         );
@@ -100,7 +106,7 @@ public class StartActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-
+                            progressDoalog.dismiss();
                             FirebaseUser user = mAuth.getCurrentUser();
 
 
@@ -108,6 +114,7 @@ public class StartActivity extends AppCompatActivity {
                             startActivity(i);
 
                         } else {
+                            progressDoalog.dismiss();
                             // If sign in fails, display a message to the user.
                             Toast.makeText(StartActivity.this, "Please check your internet connection", Toast.LENGTH_LONG).show();
 
